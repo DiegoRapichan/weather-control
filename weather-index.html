@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherNow - Previsão do Tempo</title>
+    <link rel="stylesheet" href="weather-style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header">
+            <h1>🌤️ WeatherNow</h1>
+            <p>Previsão do Tempo em Tempo Real</p>
+            <button class="btn-theme" id="themeToggle">🌙</button>
+        </header>
+
+        <!-- ÁREA DE BUSCA -->
+        <div class="search-section">
+            <!-- BOTÃO DE LOCALIZAÇÃO AUTOMÁTICA -->
+            <button class="btn-location" id="btnLocation">
+                📍 Usar Minha Localização
+            </button>
+
+            <!-- DIVISOR -->
+            <div class="divider">
+                <span>OU</span>
+            </div>
+
+            <!-- BUSCA MANUAL -->
+            <div class="manual-search">
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <select id="estado" class="input-select">
+                        <option value="">Selecione o estado...</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="cidade">Cidade:</label>
+                    <select id="cidade" class="input-select" disabled>
+                        <option value="">Selecione o estado primeiro...</option>
+                    </select>
+                </div>
+
+                <button class="btn-search" id="btnSearch">
+                    🔍 Buscar Clima
+                </button>
+            </div>
+        </div>
+
+        <!-- LOADING -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Buscando informações...</p>
+        </div>
+
+        <!-- RESULTADO DO CLIMA -->
+        <div class="weather-result" id="weatherResult">
+            <!-- CLIMA ATUAL -->
+            <div class="current-weather">
+                <div class="location-info">
+                    <h2 id="cityName">---</h2>
+                    <p id="currentDate">---</p>
+                </div>
+
+                <div class="weather-main">
+                    <div class="weather-icon-big" id="weatherIcon">☀️</div>
+                    <div class="temperature">
+                        <span class="temp-value" id="tempValue">--</span>
+                        <span class="temp-unit">°C</span>
+                    </div>
+                    <p class="weather-description" id="weatherDescription">---</p>
+                </div>
+
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <span class="detail-icon">🌡️</span>
+                        <div class="detail-info">
+                            <span class="detail-label">Sensação</span>
+                            <span class="detail-value" id="feelsLike">--°C</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">💧</span>
+                        <div class="detail-info">
+                            <span class="detail-label">Umidade</span>
+                            <span class="detail-value" id="humidity">--%</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">💨</span>
+                        <div class="detail-info">
+                            <span class="detail-label">Vento</span>
+                            <span class="detail-value" id="windSpeed">-- km/h</span>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-icon">📊</span>
+                        <div class="detail-info">
+                            <span class="detail-label">Pressão</span>
+                            <span class="detail-value" id="pressure">-- hPa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREVISÃO 5 DIAS -->
+            <div class="forecast-section">
+                <h3>Próximos Dias</h3>
+                <div class="forecast-container" id="forecastContainer">
+                    <!-- Previsões serão inseridas aqui via JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- MENSAGEM DE ERRO -->
+        <div class="error-message" id="errorMessage">
+            <span class="error-icon">⚠️</span>
+            <p id="errorText">Erro ao buscar informações</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>Desenvolvido por <strong>Diego Rapichan</strong> 💻</p>
+        <p>Dados fornecidos por <a href="https://openweathermap.org" target="_blank">OpenWeatherMap</a></p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="cities-data.js"></script>
+    <script src="weather-app.js"></script>
+</body>
+</html>
