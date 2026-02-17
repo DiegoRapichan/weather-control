@@ -2,6 +2,8 @@ import express from "express";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
@@ -11,6 +13,20 @@ app.use(cors());
 const PORT = process.env.PORT || 3001;
 const API_KEY = process.env.API_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
+
+// ================================
+// CONFIGURAÇÃO DE PATHS
+// ================================
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Servir arquivos estáticos da pasta "public"
+app.use(express.static(path.join(__dirname, "public")));
+
+// Rota padrão para o index.html
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
 
 // ================================
 // ROTA: CLIMA ATUAL
@@ -56,6 +72,9 @@ app.get("/api/forecast", async (req, res) => {
   }
 });
 
+// ================================
+// INICIAR SERVIDOR
+// ================================
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor rodando na porta ${PORT}`);
+  console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
 });
