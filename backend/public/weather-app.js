@@ -3,6 +3,14 @@
 // ========================================
 
 // ========================================
+// CONFIGURAÇÃO DA API
+// ========================================
+const API_BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:3001"
+    : window.location.origin; // Usa a URL atual em produção
+
+// ========================================
 // SELEÇÃO DE ELEMENTOS DO DOM
 // ========================================
 
@@ -56,6 +64,7 @@ const weatherIcons = {
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("🌤️ WeatherNow iniciado!");
+  console.log("🌐 API Base URL:", API_BASE_URL);
   inicializarEventListeners();
   carregarTema();
   atualizarDataAtual();
@@ -128,8 +137,6 @@ function carregarCidades() {
 
 // ========================================
 // FUNÇÃO: BUSCAR CLIMA POR CIDADE
-// FIX: agora inclui a sigla do estado na query para
-//      cidades menores serem encontradas pela API
 // ========================================
 
 function buscarClimaPorCidade() {
@@ -143,8 +150,6 @@ function buscarClimaPorCidade() {
 
   console.log(`🔍 Buscando clima para: ${cidade}, ${estado}`);
 
-  // ✅ FIX: inclui estado na query → "Apucarana,PR,BR"
-  // Isso resolve cidades pequenas que a API não encontrava com só o nome
   const query = `${cidade},${estado},BR`;
 
   mostrarLoading();
@@ -156,7 +161,7 @@ function buscarClimaPorCidade() {
 // ========================================
 
 function buscarClimaPorCoordenadas(lat, lon) {
-  const url = `http://localhost:3001/api/weather?lat=${lat}&lon=${lon}`;
+  const url = `${API_BASE_URL}/api/weather?lat=${lat}&lon=${lon}`;
 
   fetch(url)
     .then((response) => response.json())
@@ -172,18 +177,16 @@ function buscarClimaPorCoordenadas(lat, lon) {
 
 // ========================================
 // FUNÇÃO: BUSCAR CLIMA (NOME DA CIDADE)
-// FIX: tenta nome com estado; se falhar, tenta só o nome
 // ========================================
 
 function buscarClima(query, cidadeFallback) {
-  const url = `http://localhost:3001/api/weather?q=${encodeURIComponent(query)}`;
+  const url = `${API_BASE_URL}/api/weather?q=${encodeURIComponent(query)}`;
 
   console.log("🌐 Fazendo requisição para:", url);
 
   fetch(url)
     .then((response) => {
       if (!response.ok) {
-        // ✅ FALLBACK: se "Cidade,PR,BR" falhar, tenta só "Cidade,BR"
         if (cidadeFallback) {
           console.warn("⚠️ Query com estado falhou, tentando só cidade...");
           return buscarClimaFallback(cidadeFallback);
@@ -193,7 +196,7 @@ function buscarClima(query, cidadeFallback) {
       return response.json();
     })
     .then((data) => {
-      if (!data) return; // fallback está cuidando
+      if (!data) return;
       console.log("✅ Dados recebidos:", data);
       buscarPrevisao(data.coord.lat, data.coord.lon);
       exibirClima(data);
@@ -207,9 +210,8 @@ function buscarClima(query, cidadeFallback) {
     });
 }
 
-// Fallback: busca só pelo nome da cidade sem estado
 function buscarClimaFallback(cidade) {
-  const url = `${API_BASE_URL}/weather?q=${encodeURIComponent(cidade + ",BR")}&appid=${API_KEY}&units=metric&lang=pt_br`;
+  const url = `${API_BASE_URL}/api/weather?q=${encodeURIComponent(cidade + ",BR")}`;
 
   fetch(url)
     .then((response) => {
@@ -228,7 +230,7 @@ function buscarClimaFallback(cidade) {
       );
     });
 
-  return null; // sinaliza que o fallback assumiu
+  return null;
 }
 
 // ========================================
@@ -236,7 +238,7 @@ function buscarClimaFallback(cidade) {
 // ========================================
 
 function buscarPrevisao(lat, lon) {
-  const url = `http://localhost:3001/api/forecast?lat=${lat}&lon=${lon}`;
+  const url = `${API_BASE_URL}/api/forecast?lat=${lat}&lon=${lon}`;
 
   fetch(url)
     .then((response) => response.json())
@@ -279,18 +281,14 @@ function exibirClima(data) {
 
 // ========================================
 // FUNÇÃO: EXIBIR PREVISÃO 5 DIAS
-// FIX: variável "data" renomeada para "dataObj" dentro do forEach
-//      para não conflitar com o parâmetro da função
 // ========================================
 
 function exibirPrevisao(data) {
   forecastContainer.innerHTML = "";
 
-  // A API retorna dados a cada 3h — pegamos 1 por dia
   const previsoesPorDia = {};
 
   data.list.forEach((item) => {
-    // ✅ FIX: renomeado de "data" para "dataObj" — evita conflito de nome
     const dataObj = new Date(item.dt * 1000);
     const dia = dataObj.toLocaleDateString("pt-BR", {
       weekday: "short",
@@ -298,7 +296,6 @@ function exibirPrevisao(data) {
       month: "short",
     });
 
-    // Prefere o horário mais próximo do meio-dia para representar o dia
     if (!previsoesPorDia[dia]) {
       previsoesPorDia[dia] = item;
     } else {
@@ -310,7 +307,6 @@ function exibirPrevisao(data) {
     }
   });
 
-  // Pula o primeiro dia se for hoje (já temos o clima atual)
   const hoje = new Date().toLocaleDateString("pt-BR", {
     weekday: "short",
     day: "numeric",
@@ -411,5 +407,6 @@ console.log(`
 ║  ✅ Event listeners configurados   ║
 ║  ✅ Fix: query com estado          ║
 ║  ✅ Fix: previsão 5 dias           ║
+║  ✅ URLs dinâmicas (prod/dev)      ║
 ╚════════════════════════════════════╝
 `);
