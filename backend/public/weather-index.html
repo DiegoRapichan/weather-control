@@ -12,7 +12,7 @@
         script-src 'self';
         style-src 'self' https://fonts.googleapis.com 'unsafe-inline';
         font-src 'self' https://fonts.gstatic.com;
-        connect-src 'self';
+        connect-src 'self' https://api.openweathermap.org;
         img-src 'self' data:;
       "
     />
@@ -34,9 +34,7 @@
         </button>
 
         <!-- DIVISOR -->
-        <div class="divider">
-          <span>OU</span>
-        </div>
+        <div class="divider"><span>OU</span></div>
 
         <!-- BUSCA MANUAL -->
         <div class="manual-search">
