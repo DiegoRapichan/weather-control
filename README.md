@@ -387,6 +387,6 @@ Livre para usar, modificar e aprender!
 
 ---
 
-**Desenvolvido com 💜 por Diego Rapichan**
+**Desenvolvido por Diego Rapichan**
 
 _Aprenda fazendo! 🚀_
