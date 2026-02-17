@@ -2,9 +2,6 @@
 // WEATHERNOW - APLICAÇÃO DE PREVISÃO DO TEMPO
 // ========================================
 
-const API_KEY = "26846a2cfbd518d445b33f77e34c97ab";
-const API_BASE_URL = "https://api.openweathermap.org/data/2.5";
-
 // ========================================
 // SELEÇÃO DE ELEMENTOS DO DOM
 // ========================================
@@ -159,7 +156,7 @@ function buscarClimaPorCidade() {
 // ========================================
 
 function buscarClimaPorCoordenadas(lat, lon) {
-  const url = `${API_BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=pt_br`;
+  const url = `http://localhost:3001/api/weather?lat=${lat}&lon=${lon}`;
 
   fetch(url)
     .then((response) => response.json())
@@ -179,7 +176,7 @@ function buscarClimaPorCoordenadas(lat, lon) {
 // ========================================
 
 function buscarClima(query, cidadeFallback) {
-  const url = `${API_BASE_URL}/weather?q=${encodeURIComponent(query)}&appid=${API_KEY}&units=metric&lang=pt_br`;
+  const url = `http://localhost:3001/api/weather?q=${encodeURIComponent(query)}`;
 
   console.log("🌐 Fazendo requisição para:", url);
 
@@ -239,7 +236,7 @@ function buscarClimaFallback(cidade) {
 // ========================================
 
 function buscarPrevisao(lat, lon) {
-  const url = `${API_BASE_URL}/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=pt_br`;
+  const url = `http://localhost:3001/api/forecast?lat=${lat}&lon=${lon}`;
 
   fetch(url)
     .then((response) => response.json())
