@@ -4,9 +4,12 @@
 
 ---
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=render)](https://weather-control.onrender.com/)
+
 ## 🎯 Sobre o Projeto
 
 **WeatherNow** é uma aplicação de previsão do tempo que permite:
+
 - 📍 Usar sua localização GPS automaticamente
 - 🔍 Buscar manualmente por estado e cidade
 - 🌡️ Ver temperatura atual e condições climáticas
@@ -19,16 +22,19 @@
 ## ✨ Funcionalidades
 
 ### 📍 Localização Automática
+
 - Botão "Usar Minha Localização"
 - Pega GPS automaticamente
 - Mostra clima da sua cidade atual
 
 ### 🔍 Busca Manual
+
 - Select de Estados (27 estados brasileiros)
 - Select de Cidades (carrega automaticamente as cidades do estado)
 - Busca inteligente
 
 ### 🌡️ Informações do Clima
+
 - Temperatura atual
 - Sensação térmica
 - Umidade
@@ -37,15 +43,31 @@
 - Descrição das condições
 
 ### 📅 Previsão 5 Dias
+
 - Temperatura máxima e mínima
 - Condições climáticas
 - Ícones animados
 
 ### 🎨 Interface
+
 - Design moderno
 - Dark Mode 🌙
 - Ícones animados
 - Responsivo (mobile/desktop)
+
+---
+
+## 📸 Screenshots
+
+### Pesquisa Cidade
+
+![Pesquisa Cidade](screenshots/weathercontrol-pesquisa.PNG)
+_Interface moderna e possibilidade de uso de geolocalização_
+
+### Previsão Cidade
+
+![Previsão Cidade](screenshots/weathercontrol-previsao.PNG)
+_Retorna no momento, e dos próximos 5 dias_
 
 ---
 
@@ -54,6 +76,7 @@
 ### 1️⃣ Baixar os Arquivos
 
 Você precisa de 4 arquivos na mesma pasta:
+
 ```
 weathernow/
 ├── weather-index.html
@@ -67,6 +90,7 @@ weathernow/
 **Opção A:** Duplo clique em `weather-index.html`
 
 **Opção B (Melhor):** VS Code + Live Server
+
 ```
 1. Abre VS Code na pasta
 2. Instala extensão "Live Server"
@@ -76,6 +100,7 @@ weathernow/
 ### 3️⃣ Usar o App
 
 **Modo Rápido:**
+
 ```
 1. Clica "📍 Usar Minha Localização"
 2. Aceita permissão
@@ -83,6 +108,7 @@ weathernow/
 ```
 
 **Modo Manual:**
+
 ```
 1. Seleciona o Estado
 2. Seleciona a Cidade
@@ -94,6 +120,7 @@ weathernow/
 ## 🔑 API Utilizada
 
 **OpenWeatherMap API** (Gratuita!)
+
 - Site: https://openweathermap.org/
 - Limite: 1000 chamadas/dia (grátis)
 - Dados em português
@@ -106,7 +133,7 @@ weathernow/
 4. Copia sua chave
 5. Substitui no `weather-app.js` linha 14:
    ```javascript
-   const API_KEY = 'SUA_CHAVE_AQUI';
+   const API_KEY = "SUA_CHAVE_AQUI";
    ```
 
 **IMPORTANTE:** A chave no código é de exemplo. Para produção, gere a sua!
@@ -118,32 +145,36 @@ weathernow/
 Este projeto ensina:
 
 ### ✅ DOM (Document Object Model)
+
 ```javascript
 // Selecionar elementos
-const botao = document.getElementById('btnSearch');
+const botao = document.getElementById("btnSearch");
 
 // Modificar conteúdo
-temperatura.textContent = '25°C';
+temperatura.textContent = "25°C";
 
 // Adicionar/remover classes
-elemento.classList.add('active');
+elemento.classList.add("active");
 ```
 
 ### ✅ Event Listeners
+
 ```javascript
 // Ouvir eventos
-botao.addEventListener('click', minhaFuncao);
+botao.addEventListener("click", minhaFuncao);
 ```
 
 ### ✅ Fetch API
+
 ```javascript
 // Fazer requisições HTTP
 fetch(url)
-  .then(response => response.json())
-  .then(data => console.log(data));
+  .then((response) => response.json())
+  .then((data) => console.log(data));
 ```
 
 ### ✅ Promises
+
 ```javascript
 // Código assíncrono
 minhaFuncao()
@@ -152,6 +183,7 @@ minhaFuncao()
 ```
 
 ### ✅ Geolocalização
+
 ```javascript
 // Pegar GPS do usuário
 navigator.geolocation.getCurrentPosition(
@@ -161,17 +193,19 @@ navigator.geolocation.getCurrentPosition(
 ```
 
 ### ✅ Arrays e Objetos
+
 ```javascript
 // Manipular dados
-const cidades = ['Curitiba', 'Londrina'];
-const dados = { temp: 25, cidade: 'Apucarana' };
+const cidades = ["Curitiba", "Londrina"];
+const dados = { temp: 25, cidade: "Apucarana" };
 ```
 
 ### ✅ LocalStorage
+
 ```javascript
 // Salvar dados no navegador
-localStorage.setItem('tema', 'dark');
-const tema = localStorage.getItem('tema');
+localStorage.setItem("tema", "dark");
+const tema = localStorage.getItem("tema");
 ```
 
 ---
@@ -179,22 +213,26 @@ const tema = localStorage.getItem('tema');
 ## 📂 Estrutura do Código
 
 ### **weather-index.html**
+
 - Estrutura HTML
 - Formulários de busca
 - Áreas de resultado
 
 ### **weather-style.css**
+
 - Design moderno
 - Animações
 - Dark mode
 - Responsivo
 
 ### **cities-data.js**
+
 - Dados dos estados
 - Listas de cidades
 - Funções auxiliares
 
 ### **weather-app.js** ⭐
+
 - Toda a lógica
 - Chamadas API
 - Manipulação DOM
@@ -250,6 +288,7 @@ Usuário vê o clima!
 ### Mudar Cores:
 
 No `weather-style.css`, linha 7-14:
+
 ```css
 :root {
     --primary: #3b82f6;  ← Muda aqui!
@@ -261,6 +300,7 @@ No `weather-style.css`, linha 7-14:
 ### Adicionar Mais Cidades:
 
 No `cities-data.js`, adiciona no array do estado:
+
 ```javascript
 'PR': ['Curitiba', 'Londrina', 'SUA_CIDADE'],
 ```
@@ -289,14 +329,17 @@ Ideias para expandir o projeto:
 ## 🐛 Troubleshooting
 
 **Problema:** Localização não funciona
+
 - ✅ Certifica que permitiu acesso ao GPS
 - ✅ Usa HTTPS ou localhost (HTTP não funciona)
 
 **Problema:** Cidade não encontrada
+
 - ✅ Verifica o nome da cidade
 - ✅ Testa com outra cidade
 
 **Problema:** API não responde
+
 - ✅ Verifica sua chave API
 - ✅ Verifica se não passou do limite (1000/dia)
 - ✅ Testa a URL no navegador
@@ -306,6 +349,7 @@ Ideias para expandir o projeto:
 ## 📱 Responsividade
 
 O app funciona em:
+
 - 💻 Desktop (>768px)
 - 📱 Tablet (768px)
 - 📱 Mobile (<480px)
@@ -315,12 +359,14 @@ O app funciona em:
 ## 🎓 Para Estudar
 
 **Se é iniciante:**
+
 1. Lê o código do `weather-app.js` com calma
 2. Cada linha tem comentário explicativo
 3. Testa modificar valores e ver o que acontece
 4. Lê o TUTORIAL.md (vou criar!)
 
 **Próximos passos:**
+
 - Node.js (criar backend)
 - React (framework frontend)
 - TypeScript (JavaScript tipado)
@@ -330,6 +376,7 @@ O app funciona em:
 ## 👤 Autor
 
 **Diego Rapichan**
+
 - GitHub: [@DiegoRapichan](https://github.com/DiegoRapichan)
 
 ---
@@ -342,4 +389,4 @@ Livre para usar, modificar e aprender!
 
 **Desenvolvido com 💜 por Diego Rapichan**
 
-*Aprenda fazendo! 🚀*
+_Aprenda fazendo! 🚀_
