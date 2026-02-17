@@ -3,6 +3,13 @@
 > Aplicação web de previsão do tempo com geolocalização e busca manual por cidade
 
 ---
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![OpenWeatherMap](https://img.shields.io/badge/API-OpenWeatherMap-FF7F00?style=for-the-badge&logo=OpenWeatherMap&logoColor=white)
+![Geolocation](https://img.shields.io/badge/Geolocation-GPS-green?style=for-the-badge)
+![Responsive](https://img.shields.io/badge/Responsive-Design-blueviolet?style=for-the-badge)
+![Dark Mode](https://img.shields.io/badge/Dark_Mode-Enabled-111827?style=for-the-badge)
 
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge&logo=render)](https://weather-control.onrender.com/)
 
@@ -386,6 +393,10 @@ O app funciona em:
 Livre para usar, modificar e aprender!
 
 ---
+![Stars](https://img.shields.io/github/stars/DiegoRapichan/weather-control?style=for-the-badge)
+![Forks](https://img.shields.io/github/forks/DiegoRapichan/weather-control?style=for-the-badge)
+![Last Commit](https://img.shields.io/github/last-commit/DiegoRapichan/weather-control?style=for-the-badge)
+
 
 **Desenvolvido por Diego Rapichan**
 
